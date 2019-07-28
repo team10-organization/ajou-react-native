@@ -41,6 +41,7 @@ export default class WeatherDetailScreen extends React.Component {
       {
         return (
             <View style={styles.loadingContainer}>
+                <Image source = {require('./assets/Loading.gif')} style = {{width : 360, height : 240}}></Image>
                 <Text style = {styles.text}>데이터를 불러오는 중입니다.</Text>
             </View>
         );
@@ -53,29 +54,30 @@ export default class WeatherDetailScreen extends React.Component {
       let weatherIcon;
       let weatherString;
       let weatherDesc;
-
+      let background;
 
       if(this.state.weather[0].main != 'Rain')
       {
         
-        weatherIcon = require('./assets/sun.png');
-        weatherString = "햇빛 볼 시간입니다!\n 나갈 준비 하세요!";
+        weatherIcon = require('./assets/white/sun.png');
+        weatherString = "맑은 하늘이 왔네요.\n 산책나가시는건 어떨까요";
         weatherDesc = '맑음';
+        background = require('./assets/night.jpg');
+
       }
       else
       {
-        weatherIcon = require('./assets/umbrella.png');
+        weatherIcon = require('./assets/white/umbrella.png');
         weatherString = "구름이 울고 있네요.\n 막아줄 우산을 준비하세요.";
         weatherDesc = '비';
+        background = require('./assets/rainybg3.jpg');
 
       }
 
-
-      let background = './assets/night.jpg'
       
       return(
         
-        <ImageBackground source = {require(background)}  style={styles.backGroudStyle}>
+        <ImageBackground source = {background}  style={styles.backGroudStyle}>
           
           <View style = {styles.firstContainer}>
               <Text style = {styles.firstText}>{'\n'}{weatherString}</Text>
@@ -93,19 +95,19 @@ export default class WeatherDetailScreen extends React.Component {
           </View>
           <View style = {styles.lastContainer}>
             <View style = {styles.subContainer}>
-              <Image style = {{width : 50, height : 50}} source = {require('./assets/wind.png')}/>
-              <Text style = {{fontSize : 35}}>{this.state.wind.speed}노트</Text>
-              <Text style = {{fontSize : 25}}>풍속</Text>
+              <Image style = {{width : 50, height : 50}} source = {require('./assets/white/wind.png')}/>
+              <Text style = {{fontSize : 35, color : 'white'}}>{this.state.wind.speed}노트</Text>
+              <Text style = {{fontSize : 25, color : 'white'}}>풍속</Text>
             </View>
             <View style = {styles.subContainer}>
-              <Image style = {{width : 50, height : 50}} source = {require('./assets/drop.png')}/>
-              <Text style = {{fontSize : 35}}>{this.state.main.humidity}</Text>
-              <Text style = {{fontSize : 25}}>습도</Text>
+              <Image style = {{width : 50, height : 50}} source = {require('./assets/white/drop.png')}/>
+              <Text style = {{fontSize : 35, color : 'white'}}>{this.state.main.humidity}</Text>
+              <Text style = {{fontSize : 25, color : 'white'}}>습도</Text>
             </View>
             <View style = {styles.subContainer}>
-              <Image style = {{width : 50, height : 50}} source = {require('./assets/cloud.png')}/>
-              <Text style = {{fontSize : 35}}>{this.state.clouds.all}</Text>
-              <Text style = {{fontSize : 25}}>구름</Text>
+              <Image style = {{width : 50, height : 50}} source = {require('./assets/white/cloud.png')}/>
+              <Text style = {{fontSize : 35, color : 'white'}}>{this.state.clouds.all}</Text>
+              <Text style = {{fontSize : 25, color : 'white'}}>구름</Text>
             </View>
           </View>
           
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
 
   container : {
     flex : 1,
-    backgroundColor : '#fff', 
+    
   },
 
   backGroudStyle : {
@@ -132,82 +134,68 @@ const styles = StyleSheet.create({
 
   firstContainer : {
     flex : 1,
-    backgroundColor : '#fff',
+
   },
 
 
   mainContainer: {
     flex: 2,
     flexDirection : "row",
-    backgroundColor: '#fff',
+    
     alignItems : 'center',
 
-    
-    borderColor: 'red',
-    borderWidth: 2,
-
-    
   },
 
   iconContainer : {
     flex : 1,
     alignItems : 'center',
     
-    borderColor: 'red',
-    borderWidth: 2,
   },
 
   tempContainer : {
     flex : 1,
 
-    borderColor: 'red',
-    borderWidth: 2,
   },
   
   
   lastContainer : {
     flex : 2,
     flexDirection : 'row',
-    backgroundColor: '#fff',
     
-
-    borderColor: 'blue',
-    borderWidth: 2,
+   
   },
 
   subContainer : {
     flex : 1,
-    backgroundColor: '#fff',
+    
     alignItems : 'center',
 
-    borderColor: 'blue',
-    borderWidth: 2,
   },
   
 
   firstText : {
     fontSize : 30,
     textAlign : 'center',
-    
-    borderColor: 'black',
-    borderWidth: 2,
+    color : 'white'
   },
 
   iconText : {
     fontSize : 25,
     textAlign : 'center',
-
+    color : 'white'
     
   },
 
   celsiusText :{
     fontSize : 60,
     textAlign: 'center',
+    color : 'white'
   },
 
   celsiusSubText : {
     fontSize : 20,
-    textAlign : 'center'
+    textAlign : 'center',
+    color : 'white'
   },
 
   imageStyle : {
@@ -217,7 +205,7 @@ const styles = StyleSheet.create({
 
   loadingContainer: {
     flex : 1,
-    backgroundColor : '#fff', 
-
+    
+    alignItems : 'center'
   }
 });
