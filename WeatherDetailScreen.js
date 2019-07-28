@@ -20,8 +20,8 @@ export default class WeatherDetailScreen extends React.Component {
 
   componentDidMount() {
     const { navigation } = this.props;
-    //const city = navigation.getParam('city', null);
-    const city = 'Daejeon';
+    const city = navigation.getParam('city', null);
+    //const city = 'Daejeon';
 
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9bc8f879c18b16a1feace5ff7ea38ea7`)
       .then(response => response.json())
