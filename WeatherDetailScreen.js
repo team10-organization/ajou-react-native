@@ -23,7 +23,7 @@ export default class WeatherDetailScreen extends React.Component {
     //const city = navigation.getParam('city', null);
     const city = 'Daejeon';
 
-    fetch(`http://demo6468405.mockable.io/weather-crawlers/current-weathers/by-city-name/${city}`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9bc8f879c18b16a1feace5ff7ea38ea7`)
       .then(response => response.json())
       .then(info => {
         this.setState({
@@ -53,7 +53,10 @@ export default class WeatherDetailScreen extends React.Component {
       let celsius_min = this.state.main.temp_min - 273.15;
       let celsius_max = this.state.main.temp_max - 273.15;
 
-
+      if(this.state.weather[0].main == 'Rain')
+      {
+        let weathericon = ''
+      }
 
       let sunString = "햇빛 볼 시간입니다!\n 나갈 준비 하세요!"
       let rainString = "구름이 울고 있네요.\n 막아줄 우산을 준비하세요."
@@ -69,7 +72,7 @@ export default class WeatherDetailScreen extends React.Component {
           </View> 
           <View style= {styles.mainContainer}>
             <View style = {styles.iconContainer}>
-              <Image style = {styles.imageStyle} source = {require('./assets/sun.png')}/>
+              <Image style = {styles.imageStyle} source = {require(weathericon)}/>
               <Text style = {styles.iconText}>맑음</Text>
             </View>
             <View style = {styles.tempContainer}>
