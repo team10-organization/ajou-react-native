@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import { Constants } from 'expo';
 
 export default class CityList extends React.Component {
@@ -45,11 +45,13 @@ export default class CityList extends React.Component {
 
   render() {
     return (
+      
         <FlatList style={styles.container}
                   renderItem={({ item }) => this.renderItem(item)}
                   keyExtractor={item => item}
                   data={this.state.cities}
         />
+     
     );
   }
 }
