@@ -37,9 +37,6 @@ export default class WeatherDetailScreen extends React.Component {
 
   render() {
 
-      
-      
-
       if(this.state.isLoading)
       {
         return (
@@ -53,35 +50,39 @@ export default class WeatherDetailScreen extends React.Component {
       let celsius_min = this.state.main.temp_min - 273.15;
       let celsius_max = this.state.main.temp_max - 273.15;
 
-      if(this.state.weather[0].main == 'Rain')
+      let weatherIcon;
+      let weatherString;
+      let weatherDesc;
+
+
+      if(this.state.weather[0].main != 'Rain')
       {
-        let weatherIcon = './assets/umbrella.png'
-        let weatherString = "구름이 울고 있네요.\n 막아줄 우산을 준비하세요."
-        let weatherDesc = '비'
+        
+        weatherIcon = require('./assets/sun.png');
+        weatherString = "햇빛 볼 시간입니다!\n 나갈 준비 하세요!";
+        weatherDesc = '맑음';
       }
       else
       {
-        let weatherIcon = './assets/sun.png'
-        let weatherString = "햇빛 볼 시간입니다!\n 나갈 준비 하세요!"
-        let weatherDesc = '맑음'
+        weatherIcon = require('./assets/umbrella.png');
+        weatherString = "구름이 울고 있네요.\n 막아줄 우산을 준비하세요.";
+        weatherDesc = '비';
 
       }
 
-      
-      
 
       let background = './assets/night.jpg'
       
       return(
         
-        <ImageBackground source = {require(background)} resizeMode = 'cover' style={styles.backGroudStyle}>
+        <ImageBackground source = {require(background)}  style={styles.backGroudStyle}>
           
           <View style = {styles.firstContainer}>
               <Text style = {styles.firstText}>{'\n'}{weatherString}</Text>
           </View> 
           <View style= {styles.mainContainer}>
             <View style = {styles.iconContainer}>
-              <Image style = {styles.imageStyle} source = {require(weatherIcon)}/>
+              <Image style = {styles.imageStyle} source = {weatherIcon}/>
               <Text style = {styles.iconText}>{weatherDesc}</Text>
             </View>
             <View style = {styles.tempContainer}>
@@ -118,14 +119,14 @@ const styles = StyleSheet.create({
 
   container : {
     flex : 1,
-    backgroundColor : '#fff',
-    //marginTop : Constants.statusBarHeight
+    backgroundColor : '#fff', 
   },
 
   backGroudStyle : {
     
     width : '100%',
     height : '100%',
+    resizeMode : 'cover'
    
   },
 
@@ -216,8 +217,7 @@ const styles = StyleSheet.create({
 
   loadingContainer: {
     flex : 1,
-    backgroundColor : '#fff',
-    marginTop: Constants.statusBarHeight,
+    backgroundColor : '#fff', 
 
   }
 });
