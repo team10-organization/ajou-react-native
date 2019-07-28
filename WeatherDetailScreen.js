@@ -55,11 +55,20 @@ export default class WeatherDetailScreen extends React.Component {
 
       if(this.state.weather[0].main == 'Rain')
       {
-        let weathericon = ''
+        let weatherIcon = './assets/umbrella.png'
+        let weatherString = "구름이 울고 있네요.\n 막아줄 우산을 준비하세요."
+        let weatherDesc = '비'
+      }
+      else
+      {
+        let weatherIcon = './assets/sun.png'
+        let weatherString = "햇빛 볼 시간입니다!\n 나갈 준비 하세요!"
+        let weatherDesc = '맑음'
+
       }
 
-      let sunString = "햇빛 볼 시간입니다!\n 나갈 준비 하세요!"
-      let rainString = "구름이 울고 있네요.\n 막아줄 우산을 준비하세요."
+      
+      
 
       let background = './assets/night.jpg'
       
@@ -68,12 +77,12 @@ export default class WeatherDetailScreen extends React.Component {
         <ImageBackground source = {require(background)} resizeMode = 'cover' style={styles.backGroudStyle}>
           
           <View style = {styles.firstContainer}>
-              <Text style = {styles.firstText}>{'\n'}{sunString}</Text>
+              <Text style = {styles.firstText}>{'\n'}{weatherString}</Text>
           </View> 
           <View style= {styles.mainContainer}>
             <View style = {styles.iconContainer}>
-              <Image style = {styles.imageStyle} source = {require(weathericon)}/>
-              <Text style = {styles.iconText}>맑음</Text>
+              <Image style = {styles.imageStyle} source = {require(weatherIcon)}/>
+              <Text style = {styles.iconText}>{weatherDesc}</Text>
             </View>
             <View style = {styles.tempContainer}>
               <Text style = {styles.celsiusText}>{celsius.toFixed(1)}C</Text>
